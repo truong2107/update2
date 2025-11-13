@@ -66,6 +66,10 @@ $users = $accountManager->showUsers();
                             </button>
                         </a>
                     </div>
+                    <form action="accountManage.php">
+                      <input type="text" name="searchTen" id="searchTen">
+                      <input type="submit">
+                    </form>
                 </div>
                 <div class="Table">
                     <table class="listPage">
