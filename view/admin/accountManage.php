@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 if (!isset($_SESSION['tennguoidungadmin'])) {
@@ -67,13 +68,16 @@ $users = $accountManager->showUsers();
                         </a>
                     </div>
                     <form action="accountManage.php">
-                      <input type="text" name="searchTen" id="searchTen" placeholder="Nhập tên đăng nhập">
+                      <input type="text" name="searchTen" id="searchTen" placeholder="Nhập tên đăng nhập" value="<?php echo  $timkiem=$_GET["searchTen"]?? ""; ?>">
+                      <label for="tuNgay"></label>Từ ngày
+                      <input type="date" name="tuNgay" id="tuNgay" value="<?php echo  $tuNgay=$_GET["tuNgay"]?? "" ?>">
+                      <label for="denNgay"></label>Đến ngày
+                       <input type="date" name="denNgay" id="denNgay"value="<?php echo  $tuNgay=$_GET["denNgay"]?? "" ?>">
                       <input type="submit">
                     </form>
-                      <form action="accountManage.php">
-                      input
-                      <input type="submit">
-                    </form>
+
+
+
                 </div>
                 <div class="Table">
                     <table class="listPage">

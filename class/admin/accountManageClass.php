@@ -6,13 +6,18 @@ class AccountManageClass extends DatabaseClass {
 
     protected function getUsers() {
         $conn = $this->connect();
-        $timkiem=$_GET["searchTen"];
-        if($timkiem){
-            $sql = "SELECT * FROM nguoidung WHERE vaiTro = 'user' AND tenDangNhap='$timkiem' ";
+        $timkiem=$_GET["searchTen"]?? "";
+        $tuNgay=$_GET["tuNgay"]?? "";
+        $denNgay=$_GET["denNgay"]?? "";
+        $link="";
+        if($timkiem!=""){
+            $link= $link." AND tenDangNhap='".$timkiem."'";
         }
-        else{
-              $sql = "SELECT * FROM nguoidung WHERE vaiTro = 'user' ORDER BY id_nguoidung DESC";
+        if($tuNgay!=''&&$denNgay!=''){
+            $link= $link." AND ngay_tao BETWEEN '".$tuNgay."' AND '".$denNgay."'";
         }
+              $sql = "SELECT * FROM nguoidung WHERE vaiTro = 'user' $link ORDER BY id_nguoidung DESC";
+
         
         $stmt = $conn->prepare($sql);
         if (!$stmt) {
