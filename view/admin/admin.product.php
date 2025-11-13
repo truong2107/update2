@@ -3,6 +3,10 @@ session_start();
 if(!isset($_SESSION['tennguoidungadmin'])){
   header("location: index.php");
 }
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/web/controller/admin/ProductIndexContr.php';
+$products = new ProductIndexContr();
+$productList = $products->showAllProducts();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +25,8 @@ if(!isset($_SESSION['tennguoidungadmin'])){
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="css/admin.product.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="./css/admin.product.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <link
       rel="shortcut icon"
       href="../assets/img/DMTD-Food-Logo.jpg"
@@ -49,7 +53,7 @@ if(!isset($_SESSION['tennguoidungadmin'])){
         </div>
         <div class="innermenu">
         <ul>
-                              <li><a href="selectDay.php" class="menu-1">Thống kê</a></li>
+                    <li><a href="selectDay.php" class="menu-1">Thống kê</a></li>
                     <li><a href="admin.product.php" class="menu-1">Sản phẩm</a></li>
                     <li><a href="admin.order.php" class="menu-1">Đơn hàng</a></li>
                     <li><a href="AccountManage.php" class="menu-1">Tài khoản khách hàng</a></li>
@@ -70,16 +74,34 @@ if(!isset($_SESSION['tennguoidungadmin'])){
       <!-- Content -->
       <div class="content">
         <main>
-          <div class="title">
-            <h2>Danh mục sản phẩm</h2>
+          <div class="title" style="display:flex; justify-content:space-between; align-items:center; gap:20px;">
+            <h2 style="margin:0; font-size:24px;">Danh mục sản phẩm</h2>
+            <form method="GET" style="display:flex; align-items:center; gap:10px;">
+            <input 
+              type="text" 
+              name="search" 
+              placeholder="Tìm kiếm sản phẩm..." 
+              value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>"
+              style="padding:6px 12px; border:1px solid #ccc; border-radius:6px; font-size:14px; max-width:250px;"
+            >
+            <button 
+              type="submit" 
+              style="padding:6px 14px; border:none; border-radius:6px; background-color:#007bff; color:white; cursor:pointer; font-size:14px;"
+            >Tìm</button>
+
+          </form>
           </div>
           <div class="product">
             <div class="FilterAdd">
-              <select class="Filter" style="visibility: hidden;">
-                <option>Tất cả</option>
-                <option>Hoạt động</option>
-                <option>Dừng hoạt động</option>
-              </select>
+              <form method="GET" style="display:inline-block; margin-right: 10px;">
+                <div>
+                  <select id="filter-status" name="status" onchange="this.form.submit()">
+                    <option value="all" <?= (isset($_GET['status']) && $_GET['status']=='all') ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="1" <?= (isset($_GET['status']) && $_GET['status']=='1') ? 'selected' : '' ?>>Hoạt động</option>
+                    <option value="0" <?= (isset($_GET['status']) && $_GET['status']=='0') ? 'selected' : '' ?>>Dừng hoạt động</option>
+                  </select>
+                </div>
+              </form>
               <div class="Add">
                 <i class="fa-solid fa-plus"></i>
                 <button
@@ -93,9 +115,6 @@ if(!isset($_SESSION['tennguoidungadmin'])){
             <div class="ListProduct" style="width: 100%">
               <table class="table">
                 <?php
-                  require_once $_SERVER['DOCUMENT_ROOT'] . '/web/controller/admin/ProductIndexContr.php';
-                  $products = new ProductIndexContr();
-                  $productList = $products->showAllProducts();
 
                   if (empty($productList)) {
                     echo '<div style="text-align:center"><h1>Không có sản phẩm nào</h1></div>';
@@ -225,11 +244,6 @@ if(!isset($_SESSION['tennguoidungadmin'])){
   });
 
 
-  window.history.replaceState({}, document.title, window.location.pathname);
-  document.addEventListener("DOMContentLoaded", function() {
-    // Xóa query parameters khi trang load
-    window.history.replaceState({}, document.title, window.location.pathname);
-  });
   //Pagination
   let thisPage = 1;
   let limit = 5;
@@ -252,6 +266,8 @@ if(!isset($_SESSION['tennguoidungadmin'])){
   function listPage(){
     let count = Math.ceil(list.length / limit);
     document.querySelector(".listPage").innerHTML = ""; 
+
+    if(count === 0) return;
 
     if(thisPage != 1){
       let prev = document.createElement('li');

@@ -3,15 +3,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/web/class/admin/ProductClass.php";
 
 class ProductIndexContr extends ProductClass{
     public function showAllProducts(){
-        $result = $this->getAllProducts();
+        $status = isset($_GET['status']) ? $_GET['status'] : 'all';
+        $search = isset($_GET['search']) ? $_GET['search'] : '';
+
+        $result = $this->getProductsByStatusAndSearch($status, $search);
 
         if($result && $result->num_rows > 0){
             $products = [];
             while($row = $result->fetch_assoc())
                 $products[] = $row;
-        }else{
-            echo "Truy vấn SQL thất bại";
-            exit();
+        } else {
+            $products = [];
         }
 
         return $products;
