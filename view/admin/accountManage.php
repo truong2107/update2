@@ -67,7 +67,11 @@ $users = $accountManager->showUsers();
                         </a>
                     </div>
                     <form action="accountManage.php">
-                      <input type="text" name="searchTen" id="searchTen">
+                      <input type="text" name="searchTen" id="searchTen" placeholder="Nhập tên đăng nhập">
+                      <input type="submit">
+                    </form>
+                      <form action="accountManage.php">
+                      input
                       <input type="submit">
                     </form>
                 </div>
