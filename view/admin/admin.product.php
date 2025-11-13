@@ -53,7 +53,7 @@ $productList = $products->showAllProducts();
         </div>
         <div class="innermenu">
         <ul>
-                              <li><a href="selectDay.php" class="menu-1">Thống kê</a></li>
+                    <li><a href="selectDay.php" class="menu-1">Thống kê</a></li>
                     <li><a href="admin.product.php" class="menu-1">Sản phẩm</a></li>
                     <li><a href="admin.order.php" class="menu-1">Đơn hàng</a></li>
                     <li><a href="AccountManage.php" class="menu-1">Tài khoản khách hàng</a></li>
@@ -74,8 +74,22 @@ $productList = $products->showAllProducts();
       <!-- Content -->
       <div class="content">
         <main>
-          <div class="title">
-            <h2>Danh mục sản phẩm</h2>
+          <div class="title" style="display:flex; justify-content:space-between; align-items:center; gap:20px;">
+            <h2 style="margin:0; font-size:24px;">Danh mục sản phẩm</h2>
+            <form method="GET" style="display:flex; align-items:center; gap:10px;">
+            <input 
+              type="text" 
+              name="search" 
+              placeholder="Tìm kiếm sản phẩm..." 
+              value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>"
+              style="padding:6px 12px; border:1px solid #ccc; border-radius:6px; font-size:14px; max-width:250px;"
+            >
+            <button 
+              type="submit" 
+              style="padding:6px 14px; border:none; border-radius:6px; background-color:#007bff; color:white; cursor:pointer; font-size:14px;"
+            >Tìm</button>
+
+          </form>
           </div>
           <div class="product">
             <div class="FilterAdd">
@@ -252,6 +266,8 @@ $productList = $products->showAllProducts();
   function listPage(){
     let count = Math.ceil(list.length / limit);
     document.querySelector(".listPage").innerHTML = ""; 
+
+    if(count === 0) return;
 
     if(thisPage != 1){
       let prev = document.createElement('li');

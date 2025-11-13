@@ -1,30 +1,24 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/web/class/DataBaseClass.php";
 class ProductClass extends DataBaseClass{
-
-    protected function getAllProducts(){
-        $conn = $this->connect();
-        $sql = "SELECT * FROM sanpham ORDER BY MaSP ASC";
-        $result = $conn->query($sql);
-
-        if(!$result){
-            die("Lỗi truy vấn: " . $conn->error);
-        }
-
-        return $result;
-    }
-
-    protected function getProductsByStatus($status){
+    protected function getProductsByStatusAndSearch($status, $search = ''){
         $conn = $this->connect();
 
-        if($status === 'all' || $status > 1 || $status <0){
-            $sql = "SELECT * FROM sanpham ORDER BY MaSP ASC";
-            $result = $conn->query($sql);
-        } else {
+        $sql = "SELECT * FROM sanpham WHERE 1";
+
+        if($status !== 'all' && ($status == 0 || $status == 1)){
             $statusInt = intval($status);
-            $sql = "SELECT * FROM sanpham WHERE TrangThai = $statusInt ORDER BY MaSP ASC";
-            $result = $conn->query($sql);
+            $sql .= " AND TrangThai = $statusInt";
         }
+
+        if(!empty($search)){
+            $searchSafe = $conn->real_escape_string($search);
+            $sql .= " AND TenSP LIKE '%$searchSafe%'";
+        }
+
+        $sql .= " ORDER BY MaSP ASC";
+
+        $result = $conn->query($sql);
 
         if(!$result){
             die("Lỗi truy vấn: " . $conn->error);
