@@ -195,7 +195,7 @@ $users = $accountManager->showUsers();
 
       listPage.innerHTML = '';
 
-      if (thispage != 1) {
+      if (thispage != 1&&count>1) {
         let prev = document.createElement('button');
         prev.innerText = 'PREV';
         prev.setAttribute('onclick', `changePage(${thispage - 1})`);
@@ -214,7 +214,7 @@ $users = $accountManager->showUsers();
         listPage.appendChild(newPage);
       }
 
-      if (thispage != count) {
+      if (thispage != count&&count>1) {
         let next = document.createElement('button');
         next.innerText = 'NEXT';
         next.setAttribute('onclick', `changePage(${thispage + 1})`);
