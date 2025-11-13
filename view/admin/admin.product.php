@@ -3,6 +3,10 @@ session_start();
 if(!isset($_SESSION['tennguoidungadmin'])){
   header("location: index.php");
 }
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/web/controller/admin/ProductIndexContr.php';
+$products = new ProductIndexContr();
+$productList = $products->showAllProducts();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +25,8 @@ if(!isset($_SESSION['tennguoidungadmin'])){
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="css/admin.product.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="./css/admin.product.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <link
       rel="shortcut icon"
       href="../assets/img/DMTD-Food-Logo.jpg"
@@ -75,11 +79,15 @@ if(!isset($_SESSION['tennguoidungadmin'])){
           </div>
           <div class="product">
             <div class="FilterAdd">
-              <select class="Filter" style="visibility: hidden;">
-                <option>Tất cả</option>
-                <option>Hoạt động</option>
-                <option>Dừng hoạt động</option>
-              </select>
+              <form method="GET" style="display:inline-block; margin-right: 10px;">
+                <div>
+                  <select id="filter-status" name="status" onchange="this.form.submit()">
+                    <option value="all" <?= (isset($_GET['status']) && $_GET['status']=='all') ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="1" <?= (isset($_GET['status']) && $_GET['status']=='1') ? 'selected' : '' ?>>Hoạt động</option>
+                    <option value="0" <?= (isset($_GET['status']) && $_GET['status']=='0') ? 'selected' : '' ?>>Dừng hoạt động</option>
+                  </select>
+                </div>
+              </form>
               <div class="Add">
                 <i class="fa-solid fa-plus"></i>
                 <button
@@ -93,9 +101,6 @@ if(!isset($_SESSION['tennguoidungadmin'])){
             <div class="ListProduct" style="width: 100%">
               <table class="table">
                 <?php
-                  require_once $_SERVER['DOCUMENT_ROOT'] . '/web/controller/admin/ProductIndexContr.php';
-                  $products = new ProductIndexContr();
-                  $productList = $products->showAllProducts();
 
                   if (empty($productList)) {
                     echo '<div style="text-align:center"><h1>Không có sản phẩm nào</h1></div>';
@@ -225,11 +230,6 @@ if(!isset($_SESSION['tennguoidungadmin'])){
   });
 
 
-  window.history.replaceState({}, document.title, window.location.pathname);
-  document.addEventListener("DOMContentLoaded", function() {
-    // Xóa query parameters khi trang load
-    window.history.replaceState({}, document.title, window.location.pathname);
-  });
   //Pagination
   let thisPage = 1;
   let limit = 5;
