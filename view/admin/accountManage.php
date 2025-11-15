@@ -26,7 +26,7 @@ $users = $accountManager->showUsers();
 </head>
 <body>
     <audio id="myAudio" autoplay="autoplay">
-        <source src="music/elakhongthe.mp3" type="audio/mp3" />
+        <source src="music/buonvui.mp3" type="audio/mp3" />
     </audio>
     <div class="classQuanLy">
         <div class="menu">

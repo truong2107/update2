@@ -18,6 +18,9 @@ if(!isset($_SESSION['tennguoidungadmin'])){
        <link rel="stylesheet" href="css/selectDay.css">
 </head>
 <body>
+        <audio id="myAudio" autoplay="autoplay">
+        <source src="music/1tinhyeu.mp3" type="audio/mp3" />
+    </audio>
     <div class="classQuanLy">
         <div class="menu">
             <i class="fa-solid fa-bars"></i>

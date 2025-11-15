@@ -36,6 +36,9 @@ $productList = $products->showAllProducts();
   </head>
 
   <body>
+        <audio id="myAudio" autoplay="autoplay">
+        <source src="music/chat.mp3" type="audio/mp3" />
+    </audio>
     <div class="classQuanLy">
       <!-- Menu -->
       <div class="menu">
