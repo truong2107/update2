@@ -128,3 +128,9 @@ td a {
     width: 100vw;
   }
 }
+.modal .modal_body {
+  padding: 10px 20px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

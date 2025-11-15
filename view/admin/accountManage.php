@@ -22,9 +22,28 @@ $users = $accountManager->showUsers();
     <link href="../../img/DMTD-Food-Logo.jpg" rel="shortcut icon" type="image/x-icon"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
        <link rel="stylesheet" href="css/accountManage.css">
+       <script src="js/modal.js"></script>
     
 </head>
+<?php 
+if (isset($_GET['act'])){
+    $typeAct = $_GET['act'];
+    echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {';    
+    switch($typeAct){
+        case "success":
+            echo 'changeAccSuccesss("Sửa tài khoản thành công");';
+            break;
+        case "addToCartSuccess":
+           echo 'showAddToCartModal("Thêm món ăn thành công");';
+           break;
+    }
+    echo '});
+    </script>';    
+}
+?>
 <body>
+
     <audio id="myAudio" autoplay="autoplay">
         <source src="music/buonvui.mp3" type="audio/mp3" />
     </audio>
@@ -79,8 +98,6 @@ $users = $accountManager->showUsers();
                        <input type="date" name="denNgay" id="denNgay"value="<?php echo  $tuNgay=$_GET["denNgay"]?? "" ?>">
                       <input type="submit">
                     </form>
-
-
 
                 </div>
                 <div class="Table">
