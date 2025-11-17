@@ -27,6 +27,7 @@ $productList = $products->showAllProducts();
     />
     <link rel="stylesheet" href="./css/admin.product.css" />
     <link rel="stylesheet" href="./css/index.css" />
+        <script src="js/modal.js"></script>
     <link
       rel="shortcut icon"
       href="../assets/img/DMTD-Food-Logo.jpg"
@@ -34,7 +35,23 @@ $productList = $products->showAllProducts();
     />
     <title>DMTD FOOD</title>
   </head>
-
+<?php 
+if (isset($_GET['act'])){
+    $typeAct = $_GET['act'];
+    echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {';    
+    switch($typeAct){
+        case "success":
+            echo 'addProduct("Thêm sản phẩm thành công");';
+            break;
+        case "lock":
+          echo 'changeAccSuccesss("Thay đổi trạng thái tài khoản thành công");';
+           break;
+    }
+    echo '});
+    </script>';    
+}
+?>
   <body>
         <audio id="myAudio" autoplay="autoplay">
         <source src="music/chat.mp3" type="audio/mp3" />

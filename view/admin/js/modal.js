@@ -25,6 +25,9 @@ function showAddToCartModal(message) {
 function changeAccSuccesss(message) {
   createModal2(message, "/web/view/admin/accountManage.php", "chấp nhận");
 }
+function addProduct(message) {
+  createModal2(message, "/web/view/admin/admin.product.php", "chấp nhận");
+}
 
 // === HÀM TẠO MODAL DÙNG CHUNG ===
 function createModal(message, linkHref, linkText) {

@@ -8,7 +8,7 @@ class ProductAddClass extends DataBaseClass{
         $sql = "INSERT INTO sanpham (MaLoaiSP, TenSP, DonGia, SoLuongBan, MoTa, HinhAnh, TrangThai) VALUES ('$maLoaiSP', '$tenSP', '$gia', '$soLuongBan', '$moTa', '$anh', '$trangthai' )";
 
         if (mysqli_query($conn, $sql)) {
-            header("Location: ../../view/admin/admin.product.php");
+            header("Location: ../../view/admin/admin.product.php?act=success");
             exit();
         } else {
             echo "Lỗi khi thêm sản phẩm: " . mysqli_error($conn);

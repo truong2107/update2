@@ -28,15 +28,18 @@ $users = $accountManager->showUsers();
 <?php 
 if (isset($_GET['act'])||isset($_GET['id'])){
     $typeAct = $_GET['act'];
-    $id = $_GET['id'];
+    $id  = $_GET['id']?? "";
     echo '<script>
         document.addEventListener("DOMContentLoaded", function() {';    
     switch($typeAct){
         case "success":
-            echo 'changeAccSuccesss("Sửa tài khoản thành công");';
+            echo 'changeAccSuccesss("Sửa tài khoản có id='.$id.'  thành công");';
             break;
         case "lock":
-          echo 'changeAccSuccesss("Thay đổi trạng thái tài khoản thành công");';
+          echo 'changeAccSuccesss("Khoá tài khoản số '.$id.'  thành công");';
+           break;
+                   case "unlock":
+          echo 'changeAccSuccesss("Mở khoá tài khoản '.$id.'  thành công");';
            break;
     }
     echo '});

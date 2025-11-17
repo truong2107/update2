@@ -23,11 +23,13 @@ if(!isset($_SESSION['tennguoidungadmin'])){
     />
     <link rel="stylesheet" href="css/admin.add-product.css" />
     <link rel="stylesheet" href="css/index.css" />
+
     <link
       rel="shortcut icon"
       href="../assets/img/DMTD-Food-Logo.jpg"
       type="image/x-icon"
     />
+
     <title>DMTD FOOD</title>
   </head>
 
