@@ -26,16 +26,17 @@ $users = $accountManager->showUsers();
     
 </head>
 <?php 
-if (isset($_GET['act'])){
+if (isset($_GET['act'])||isset($_GET['id'])){
     $typeAct = $_GET['act'];
+    $id = $_GET['id'];
     echo '<script>
         document.addEventListener("DOMContentLoaded", function() {';    
     switch($typeAct){
         case "success":
             echo 'changeAccSuccesss("Sửa tài khoản thành công");';
             break;
-        case "addToCartSuccess":
-           echo 'showAddToCartModal("Thêm món ăn thành công");';
+        case "lock":
+          echo 'changeAccSuccesss("Thay đổi trạng thái tài khoản thành công");';
            break;
     }
     echo '});

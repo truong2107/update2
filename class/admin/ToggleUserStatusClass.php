@@ -19,7 +19,7 @@ class ToggleUserStatusClass extends DatabaseClass {
         
         if ($stmt->execute()) {
             $stmt->close();
-            header("location: /web/view/admin/accountManage.php");
+            header("location: /web/view/admin/accountManage.php?act=lock");
             exit();
         } else {
             die("Lỗi khi cập nhật trạng thái: " . $stmt->error);

@@ -58,7 +58,7 @@ class changeInforAccClass extends DatabaseClass {
         $stmt->bind_param("ssssssssi", $tenNguoiDung, $tenDangNhap, $email, $password, $sdt, $diaChi, $quan_huyen, $phuong_xa, $id);
 
         if ($stmt->execute()) {
-            header("location: /web/view/admin/accountManage.php?act=success");
+            header("location: /web/view/admin/accountManage.php?act=success&id=$id");
             exit();
         } else {
             die("Lỗi khi cập nhật người dùng: " . $stmt->error);
