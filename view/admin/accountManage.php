@@ -87,20 +87,22 @@ if (isset($_GET['act'])||isset($_GET['id'])){
             </div>
             <div class="list">
                 <div class="search">
-                    <div class="Themmoi">
+                    <div class="Themmoi" style="margin-top: 10px;">
                         <a href="addAccount.php">
                             <button style="background-color: #f37319; padding: 5px; color: white; border: none; cursor: pointer;">
                                 Thêm mới
                             </button>
                         </a>
                     </div>
-                    <form action="accountManage.php">
+                    <form action="accountManage.php" class="timkiem">
                       <input type="text" name="searchTen" id="searchTen" placeholder="Nhập tên đăng nhập" value="<?php echo  $timkiem=$_GET["searchTen"]?? ""; ?>">
-                      <label for="tuNgay"></label>Từ ngày
+                      <div class="">
+                                              <label for="tuNgay"></label>Từ ngày
                       <input type="date" name="tuNgay" id="tuNgay" value="<?php echo  $tuNgay=$_GET["tuNgay"]?? "" ?>">
-                      <label for="denNgay"></label>Đến ngày
+                    <label for="denNgay"></label>Đến ngày
                        <input type="date" name="denNgay" id="denNgay"value="<?php echo  $tuNgay=$_GET["denNgay"]?? "" ?>">
-                      <input type="submit">
+                      <input type="submit"></div>
+                      
                     </form>
 
                 </div>

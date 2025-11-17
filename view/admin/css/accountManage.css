@@ -334,6 +334,16 @@ td i {
     font-size: small;
   }
 }
+.timkiem {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid;
+  display: flex;
+  justify-content: space-between;
+}
+input[type="submit"]:hover {
+  background-color: #f37319;
+}
 @media (max-height: 750px) and (max-width: 800px) {
   .remove {
     height: 45%;

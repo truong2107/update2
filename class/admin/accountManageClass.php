@@ -14,7 +14,7 @@ class AccountManageClass extends DatabaseClass {
             $link= $link." AND tenDangNhap='".$timkiem."'";
         }
         if($tuNgay!=''&&$denNgay!=''){
-            $link= $link." AND ngay_tao BETWEEN '".$tuNgay."' AND '".$denNgay."'";
+            $link= $link." AND ngay_tao >='".$tuNgay." 00:00:00 AM' AND ngay_tao<='".$denNgay." 23:59:59 AM'";
         }
               $sql = "SELECT * FROM nguoidung WHERE vaiTro = 'user' $link ORDER BY id_nguoidung DESC";
 
