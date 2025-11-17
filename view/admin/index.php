@@ -31,6 +31,7 @@ if (isset($_SESSION['tennguoidungadmin'])) {
         </div>
         <input type="submit" value="Đăng nhập" name="signIn">
     </form>
+    <a href="../../">← quay lại trang mua sắm</a>
 </div>
 
 <?php 
