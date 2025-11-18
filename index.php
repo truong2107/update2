@@ -3,7 +3,12 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . "/web/class/DataBaseClass.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/web/controller/user/SignInContr.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/web/controller/user/ProductContr.php";
-
+$request = $_SERVER['REQUEST_URI'];
+if (!file_exists(__DIR__ . $request)) {
+    http_response_code(404);
+    include 'error404.php'; // Sửa đường dẫn cho đúng file của bạn
+    exit;
+}
 // Kiểm tra đăng nhập
 $isLoggedIn = isset($_SESSION['tenDangNhap']);
 if($isLoggedIn){

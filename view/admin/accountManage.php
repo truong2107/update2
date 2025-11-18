@@ -1,5 +1,6 @@
 
 <?php
+include("access.php");
 session_start();
 if (!isset($_SESSION['tennguoidungadmin'])) {
     header("location: index.php");
@@ -10,6 +11,7 @@ if (!isset($_SESSION['tennguoidungadmin'])) {
 require_once $_SERVER['DOCUMENT_ROOT'] . "/web/controller/admin/AccountManageContr.php";
 $accountManager = new AccountManageContr();
 $users = $accountManager->showUsers();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

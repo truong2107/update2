@@ -1,0 +1,3 @@
+
+AcceptPathInfo Off
+ErrorDocument 404 /web/view/admin/error404.php
