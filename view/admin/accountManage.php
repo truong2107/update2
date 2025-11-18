@@ -1,6 +1,5 @@
 
 <?php
-include("access.php");
 session_start();
 if (!isset($_SESSION['tennguoidungadmin'])) {
     header("location: index.php");
