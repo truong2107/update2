@@ -99,7 +99,11 @@ window.onload = function () {
              <div class="input-row">
                  <i class="fa fa-user icon"></i>
                  <input class="input-field" type="text" placeholder="Tên đăng nhập" name="tenDangNhap" value="<?php echo htmlspecialchars($userData['tenDangNhap']); ?>" required>
+
              </div>
+                              <?php             if (isset($_GET['error']) && $_GET['error'] == 'usertaken') {
+                 echo '<span class="error-message" style="display:block;">Tên đăng nhập này đã được sử dụng bởi tài khoản khác.</span>';
+            } ?>
         </div>
 
         <div class="input-container">
@@ -111,6 +115,7 @@ window.onload = function () {
             if (isset($_GET['error']) && $_GET['error'] == 'emailtaken') {
                 echo '<span class="error-message" style="display:block;">Email này đã được sử dụng bởi tài khoản khác.</span>';
             }
+
             ?>
         </div>
         

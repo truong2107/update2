@@ -56,7 +56,7 @@ class changeInforAccClass extends DatabaseClass {
         if ($stmtCheck2->num_rows > 0) {
 
             $stmtCheck2->close();
-            header("Location: /web/view/admin/changeInforAcc.php?this_id=" . $id . "&error=emailtaken");
+            header("Location: /web/view/admin/changeInforAcc.php?this_id=" . $id . "&error=usertaken");
             exit();
         }
                 $stmtCheck2->close();
