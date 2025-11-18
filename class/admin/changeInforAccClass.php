@@ -47,7 +47,19 @@ class changeInforAccClass extends DatabaseClass {
             exit();
         }
         $stmtCheck->close();
+        $sqlCheck2 = "SELECT id_nguoidung FROM nguoidung WHERE tenDangNhap = ? AND id_nguoidung != ?";
+        $stmtCheck2 = $conn->prepare($sqlCheck2);
+        $stmtCheck2->bind_param("si", $tenDangNhap, $id);
+        $stmtCheck2->execute();
+        $stmtCheck2->store_result();
 
+        if ($stmtCheck2->num_rows > 0) {
+
+            $stmtCheck2->close();
+            header("Location: /web/view/admin/changeInforAcc.php?this_id=" . $id . "&error=emailtaken");
+            exit();
+        }
+                $stmtCheck2->close();
 
         $sql = "UPDATE nguoidung SET tenNguoiDung=?, tenDangNhap=?, email=?, password=?, sdt=?, diaChi=?, quan_huyen=?, phuong_xa=? WHERE id_nguoidung=?";
         $stmt = $conn->prepare($sql);
