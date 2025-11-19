@@ -91,6 +91,14 @@ if(!isset($_SESSION['tennguoidungadmin'])){
                 <div class="form-group">
                   <label class="control-label">Tên sản phẩm</label>
                   <input class="form-control" type="text" name="name" value ="<?php echo $product['TenSP']?>" required/>
+
+                  <?php 
+                  if (isset($_GET['error']) && $_GET['error'] == 'nameProductTaken') {
+                      echo '<div style="color:red; text-align:start; margin-bottom: 10px;font-size:small;">
+                              Tên sản phẩm đã tồn tại!
+                            </div>';
+                  }
+                  ?>
                 </div>
                 <div class="form-group">
                   <label for="selectform" class="control-label">Trạng thái</label>
@@ -108,7 +116,7 @@ if(!isset($_SESSION['tennguoidungadmin'])){
                           <option value="0">Dừng hoạt động</option>
                         ';
                       }
-                    ?>>
+                    ?>
                   </select>
                 </div>
                 <div class="form-group">
@@ -163,45 +171,45 @@ if(!isset($_SESSION['tennguoidungadmin'])){
 <script>
 
   document.addEventListener("DOMContentLoaded", function () {
-      const fileInput = document.querySelector(".uploadImg input");
-      const imgWrapper = document.querySelector(".img-wrapper");
-      const imgPreview = document.querySelector(".img-wrapper img");
-      const removeImgBtn = document.querySelector(".removeImg");
-      const removeImageInput = document.getElementById("removeImage");
-      const imageFileNameInput = document.getElementById("imageFileName");
+    const fileInput = document.querySelector(".uploadImg input");
+    const imgWrapper = document.querySelector(".img-wrapper");
+    const imgPreview = document.querySelector(".img-wrapper img");
+    const removeImgBtn = document.querySelector(".removeImg");
+    const removeImageInput = document.getElementById("removeImage");
+    const imageFileNameInput = document.getElementById("imageFileName");
 
-      // Kiểm tra xem ảnh có sẵn không
-      if (imgPreview.src) {
-          imgPreview.style.display = "block"; 
-          removeImgBtn.style.display = "inline-block"; 
-      } else {
-          imgPreview.style.display = "none"; 
-          removeImgBtn.style.display = "none"; 
-      }
+    // Kiểm tra xem ảnh có sẵn không
+    if (imgPreview.src) {
+        imgPreview.style.display = "block"; 
+        removeImgBtn.style.display = "inline-block"; 
+    } else {
+        imgPreview.style.display = "none"; 
+        removeImgBtn.style.display = "none"; 
+    }
 
-      // Xử lý khi chọn ảnh mới
-      fileInput.addEventListener("change", function (event) {
-          const file = event.target.files[0];
+    // Xử lý khi chọn ảnh mới
+    fileInput.addEventListener("change", function (event) {
+        const file = event.target.files[0];
 
-          if (file) {
-              const reader = new FileReader();
-              reader.onload = function (e) {
-                  imgPreview.src = e.target.result;
-                  imgPreview.style.display = "block"; 
-                  removeImgBtn.style.display = "inline-block"; 
-              };
-              reader.readAsDataURL(file);
-          }
-      });
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imgPreview.src = e.target.result;
+                imgPreview.style.display = "block"; 
+                removeImgBtn.style.display = "inline-block"; 
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 
-      // Xử lý khi bấm nút X để xóa ảnh
-      removeImgBtn.addEventListener("click", function () {
-          imgPreview.style.display = "none"; 
-          removeImgBtn.style.display = "none"; 
-          removeImageInput.value = "1"; 
-          imageFileNameInput.value = ""; 
-          fileInput.setAttribute("required", "required");
-      });
+    // Xử lý khi bấm nút X để xóa ảnh
+    removeImgBtn.addEventListener("click", function () {
+        imgPreview.style.display = "none"; 
+        removeImgBtn.style.display = "none"; 
+        removeImageInput.value = "1"; 
+        imageFileNameInput.value = ""; 
+        fileInput.setAttribute("required", "required");
+    });
   });
   // Xử lý sự kiện thay đổi trạng thái checkbox
 

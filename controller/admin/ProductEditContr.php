@@ -36,7 +36,7 @@ class ProductEditContr extends ProductEditClass{
 
     public function getNameCategoryById($id){
         $result = $this->getNameCategory($id);
-        $nameCategory = (mysqLi_fetch_array($result))["TenLoaiSP"];
+        $nameCategory = (mysqli_fetch_array($result))["TenLoaiSP"];
 
         return $nameCategory;
     }
@@ -55,7 +55,7 @@ class ProductEditContr extends ProductEditClass{
     }
 
     public function editProduct(){
-        $this->updateProduct($this->maSP, $this->maLoaiSP, $this->tenSP, $this->gia, $this->moTa, $this->anh, $this->trangthai);
+        return $this->updateProduct($this->maSP, $this->maLoaiSP, $this->tenSP, $this->gia, $this->moTa, $this->anh, $this->trangthai);
     }
 }
 

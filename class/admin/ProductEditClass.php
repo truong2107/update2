@@ -26,12 +26,33 @@ class ProductEditClass extends DataBaseClass {
     
     protected function updateProduct($maSP, $maLoaiSP, $tenSP, $gia, $moTa, $anh, $trangThai){
         $conn = $this->connect();
-        $sql = "UPDATE sanpham SET MaLoaiSP = '$maLoaiSP', TenSP = '$tenSP', DonGia = '$gia', MoTa = '$moTa', HinhAnh = '$anh', TrangThai = '$trangThai' WHERE MaSP = $maSP";
 
-        if(mysqli_query($conn, $sql)){
-            header("Location: ../../view/admin/admin.product.php");
+        $sqlCheck = "SELECT MaSP FROM sanpham WHERE TenSP = ? AND MaSP != ?";
+        $stmtCheck = $conn->prepare($sqlCheck);
+
+        $stmtCheck->bind_param("si", $tenSP, $maSP);
+        $stmtCheck->execute();
+
+        $stmtCheck->store_result();
+
+        if ($stmtCheck->num_rows > 0) {
+            $stmtCheck->close();
+            header("Location: /web/view/admin/admin.product-edit.php?id=" . $maSP . "&error=nameProductTaken");
             exit();
         }
+        $stmtCheck->close();
+
+        $sql = "UPDATE sanpham SET MaLoaiSP = ?, TenSP = ?, DonGia = ?, MoTa = ?, HinhAnh = ?, TrangThai = ? WHERE MaSP = ?";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param("isissii",$maLoaiSP, $tenSP, $gia, $moTa, $anh, $trangThai, $maSP);
+
+        if ($stmt->execute()) {
+            return true;
+        }
+
+        return false;
     }
 }
 ?>

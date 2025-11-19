@@ -28,6 +28,9 @@ function changeAccSuccesss(message) {
 function addProduct(message) {
   createModal2(message, "/web/view/admin/admin.product.php", "chấp nhận");
 }
+function editProduct(message) {
+  createModal2(message, "/web/view/admin/admin.product.php", "chấp nhận");
+}
 
 // === HÀM TẠO MODAL DÙNG CHUNG ===
 function createModal(message, linkHref, linkText) {

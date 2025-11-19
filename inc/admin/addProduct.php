@@ -7,11 +7,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $giaban = $_POST['price'];
     $loaisp = (int) $_POST['category'];
     $mota = $_POST['description'];
-    $anh = $_FILES['image']['name'];
-    move_uploaded_file($_FILES['image']['tmp_name'], "../../view/img/product/" . basename($anh));
+    
+    $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+    $anh = uniqid("img_", true) . "." . $ext;
 
     $product = new ProductAddContr($loaisp, $tensp, $giaban, $mota, $anh, $trangthai, 0);
-    $result = $product->addProduct();
+
+    if($product->addProduct()){
+        move_uploaded_file($_FILES['image']['tmp_name'], "../../view/img/product/" . basename($anh));
+        header("Location: ../../view/admin/admin.product.php?act=add");
+        exit();     
+    }
 }
 
     

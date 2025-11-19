@@ -15,22 +15,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $loaisp = (int) $_POST['category'];
         $mota = $_POST['description'];
 
-        $anh = $_FILES['image']['name'];    
-        $removeImage = (int) $_POST['removeImage'];
-        $currentImage = $_POST['imageFileName']; 
+        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $anh = uniqid("img_", true) . "." . $ext;
 
     
-        if ($removeImage == 1 && !empty($product['HinhAnh']) && file_exists("../../view/img/product/" . $product['HinhAnh'])) {
-            unlink("../../view/img/product/" . $product['HinhAnh']);
-        }
-        
-        if (!empty($anh)) {
-            move_uploaded_file($_FILES['image']['tmp_name'], "../../view/img/product/" . basename($anh));
+        if(!empty($anh)){
             $productEdit = new ProductEditContr($id, $loaisp, $ten, $giaban, $mota, $anh, $trangthai);
-            $productEdit->editProduct();
-        } else {
-            $productEdit = new ProductEditContr($id, $loaisp, $ten, $giaban, $mota, $currentImage, $trangthai);
-            $productEdit->editProduct();
+
+            if($productEdit->editProduct()){
+                move_uploaded_file($_FILES['image']['tmp_name'], "../../view/img/product/" . basename($anh));
+
+                if (file_exists("../../view/img/product/" . $product['HinhAnh'])) {
+                    unlink("../../view/img/product/" . $product['HinhAnh']);
+                }
+
+                header("Location: ../../view/admin/admin.product.php?act=edit");
+                exit(); 
+            }
+        }
+        else{
+            $productEdit = new ProductEditContr($id, $loaisp, $ten, $giaban, $mota, $product['HinhAnh'], $trangthai);
+
+            if($productEdit->editProduct()){
+                header("Location: ../../view/admin/admin.product.php?act=add");
+                exit(); 
+            }
         }
     }
 }    

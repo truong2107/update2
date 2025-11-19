@@ -82,6 +82,13 @@ if(!isset($_SESSION['tennguoidungadmin'])){
                 <div class="form-group">
                   <label class="control-label">Tên sản phẩm</label>
                   <input class="form-control" type="text" name="name" required/>
+                  <?php 
+                  if (isset($_GET['error']) && $_GET['error'] == 'nameProductTaken') {
+                      echo '<div style="color:red; text-align:start; margin-bottom: 10px;font-size:small;">
+                              Tên sản phẩm đã tồn tại!
+                            </div>';
+                  }
+                  ?>
                 </div>
                 <div class="form-group">
                   <label for="selectform" class="control-label">Trạng thái</label>

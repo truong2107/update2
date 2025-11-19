@@ -21,7 +21,7 @@ class ProductAddContr extends ProductAddClass{
     }
 
     public function addProduct(){
-        $this->insertProduct($this->maLoaiSP, $this->tenSP, $this->gia, $this->moTa, $this->anh, $this->trangthai, $this->soLuongBan);
+        return $this->insertProduct($this->maLoaiSP, $this->tenSP, $this->gia, $this->moTa, $this->anh, $this->trangthai, $this->soLuongBan);
     }
 }
 

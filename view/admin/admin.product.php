@@ -41,11 +41,11 @@ if (isset($_GET['act'])){
     echo '<script>
         document.addEventListener("DOMContentLoaded", function() {';    
     switch($typeAct){
-        case "success":
+        case "add":
             echo 'addProduct("Thêm sản phẩm thành công");';
             break;
-        case "lock":
-          echo 'changeAccSuccesss("Thay đổi trạng thái tài khoản thành công");';
+        case "edit":
+          echo 'editProduct("Sửa sản phẩm thành công");';
            break;
     }
     echo '});
@@ -53,9 +53,9 @@ if (isset($_GET['act'])){
 }
 ?>
   <body>
-        <audio id="myAudio" autoplay="autoplay">
+        <!-- <audio id="myAudio" autoplay="autoplay">
         <source src="music/chat.mp3" type="audio/mp3" />
-    </audio>
+    </audio> -->
     <div class="classQuanLy">
       <!-- Menu -->
       <div class="menu">
