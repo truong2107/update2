@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/web/controller/user/BillContr.php";
 $maHoaDon = isset($_GET['mahoadon']) ? $_GET['mahoadon'] : 0;
 
 if($maHoaDon <= 0) {
-    echo "Không tìm thấy đơn hàng";
+    header("Location: /web/index.php");
     exit();
 }
 
@@ -13,7 +13,7 @@ $bill = new BillContr();
 $donHang = $bill->handleGetBillDetail($maHoaDon);
 $summary = $bill->getBillSummaryInfo($maHoaDon);
 if(!$summary) {
-    echo "Không tìm thấy thông tin đơn hàng!";
+    header("Location: /web/index.php");
     exit();
 }
 $tenNguoiDung = $summary['HoTen'];
