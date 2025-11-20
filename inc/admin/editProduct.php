@@ -15,11 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $loaisp = (int) $_POST['category'];
         $mota = $_POST['description'];
 
-        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        $anh = uniqid("img_", true) . "." . $ext;
+        $imageUploaded = !empty($_FILES['image']['name']);
 
-    
-        if(!empty($anh)){
+        if($imageUploaded){
+            $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            $anh = uniqid("img_", true) . "." . $ext;
+
             $productEdit = new ProductEditContr($id, $loaisp, $ten, $giaban, $mota, $anh, $trangthai);
 
             if($productEdit->editProduct()){
@@ -33,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit(); 
             }
         }
-        else{
+        else {
             $productEdit = new ProductEditContr($id, $loaisp, $ten, $giaban, $mota, $product['HinhAnh'], $trangthai);
 
             if($productEdit->editProduct()){
-                header("Location: ../../view/admin/admin.product.php?act=add");
+                header("Location: ../../view/admin/admin.product.php?act=edit");
                 exit(); 
             }
         }
