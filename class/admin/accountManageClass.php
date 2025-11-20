@@ -11,7 +11,7 @@ class AccountManageClass extends DatabaseClass {
         $denNgay=$_GET["denNgay"]?? "";
         $link="";
         if($timkiem!=""){
-            $link= $link." AND tenDangNhap='".$timkiem."'";
+            $link= $link." AND tenDangNhap LIKE '%$timkiem%'";
         }
         if($tuNgay!=''&&$denNgay!=''){
             $link= $link." AND ngay_tao >='".$tuNgay." 00:00:00 AM' AND ngay_tao<='".$denNgay." 23:59:59 AM'";
