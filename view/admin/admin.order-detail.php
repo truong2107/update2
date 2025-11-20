@@ -155,3 +155,14 @@ include "../../inc/admin/order-detail.php";
     </div>
   </body>
 </html>
+<script>
+const menu = document.querySelector(".menu");
+const menuToggle = document.querySelector(".menu-toggle i");
+menuToggle.addEventListener("click", function () {
+  if (menu instanceof HTMLElement) { menu.style.display = "block"; }
+});
+const menuinput = document.querySelector(".menu i");
+menuinput.addEventListener("click", function () {
+  if (menu instanceof HTMLElement) { menu.style.display = "none"; }
+});
+</script>
