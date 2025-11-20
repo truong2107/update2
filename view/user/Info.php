@@ -1,4 +1,5 @@
 <?php
+        $id = $_SESSION['id'];
         $tenNguoiDung = $_SESSION['tenNguoiDung'];
         $tenDangNhap = $_SESSION['tenDangNhap']; 
         $email = $_SESSION['email']; 
@@ -62,6 +63,7 @@
     
     <div style="text-align: center;">
         <a href="/web/index.php?act=home" class="btn-back">Quay lại trang chủ</a>
+        <a href="/web/view/user/UpdateInfo.php?id=<?= $id?>" class="btn-back">Chỉnh sử thông tin cá nhân</a>
     </div>
 </div>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/web/view/user/Footer.php"; ?>

@@ -32,6 +32,7 @@ class SignInClass extends DatabaseClass {
             // Bắt đầu session và lưu thông tin người dùng
             session_start();
             $_SESSION['role'] = $row['vaiTro'];
+            $_SESSION['id'] = $row['id_nguoidung'];
             $_SESSION['tenNguoiDung'] = $row['tenNguoiDung'];
             $_SESSION['tenDangNhap'] = $row['tenDangNhap'];
             $_SESSION['email'] = $row['email'];
