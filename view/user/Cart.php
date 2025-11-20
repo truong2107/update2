@@ -40,6 +40,8 @@ $sdt = $_SESSION['sdt'];
 $diaChi = $_SESSION['diaChi'];
 $quan_huyen = $_SESSION['quan_huyen'];
 $phuong_xa = $_SESSION['phuong_xa'];
+}else{
+    unset($_SESSION['giohang'];
 }
 
 ?>
