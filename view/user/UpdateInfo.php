@@ -1,21 +1,23 @@
 <?php
 session_start();
 
-// if (!isset($_GET['id']) || !is_numeric($_GET['id'])) { 
-//     echo "Không tìm thấy id người dùng";
-//     exit();
-// }
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    header("location: /web/index.php"); 
+    exit();
+}
 
-$userId = $_GET['id'];
+$userId = isset($_GET['id']) ? $_GET['id'] : 0 ;
+
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/web/controller/user/InfoContr.php";
 $userController = new InfoContr(); 
 $userData = $userController->showUser($userId);
 
-// if (!$userData) {
-//     header("location: /web/index.php");
-//     exit();
-// }
+if (!$userData) {
+    header("location: /web/index.php");
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html>
