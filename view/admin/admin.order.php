@@ -45,9 +45,6 @@ if(!isset($_SESSION['tennguoidungadmin'])){
     />
     <title>DMTD FOOD</title>
   </head>
-    <audio id="myAudio" autoplay="autoplay">
-        <source src="music/Thanhhoa.mp3" type="audio/mp3" />
-    </audio>
   <body>
     <div class="classQuanLy">
       <!-- Menu -->

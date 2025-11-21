@@ -48,10 +48,6 @@ if (isset($_GET['act'])||isset($_GET['id'])){
 }
 ?>
 <body>
-
-    <audio id="myAudio" autoplay="autoplay">
-        <source src="music/buonvui.mp3" type="audio/mp3" />
-    </audio>
     <div class="classQuanLy">
         <div class="menu">
             <i class="fa-solid fa-bars"></i>
