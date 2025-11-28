@@ -22,7 +22,7 @@ if (isset($_GET['product_id'])) {
                     <input type="hidden" name="gia" value="<?= $product['DonGia'] ?>">
                     <input type="hidden" name="hinh" value="<?= htmlspecialchars($product['HinhAnh']) ?>">
                     <label for="quantity">Số lượng:</label>
-                    <input type="number" name="quantity" id="quantity" value="1" min="1">
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" max="100" required>
                     <input type="submit" name="addcart" value="Đặt hàng">
                 </form>
             </div>
@@ -35,3 +35,9 @@ if (isset($_GET['product_id'])) {
     echo "<p>Yêu cầu không hợp lệ.</p>";
 }
 ?>
+<script>
+document.getElementById("quantity").addEventListener("input", function () {
+    if (this.value > 100) this.value = 100;
+    if (this.value < 1) this.value = 1;
+});
+</script>
